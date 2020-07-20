@@ -1,31 +1,33 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: ''
+title: 'Incorrect sample network-quorum.yaml file'
 labels: bug
-assignees: ''
+assignees: 'BAF Team'
 
 ---
 
 **Describe the bug**
-A clear and concise description of what the bug is.
+The sample network-quorum.yaml file contains both quorum and corda values as external_url_suffix in multiple places. For ex- In warehouse organization below value is present:-
+external_url_suffix: test.corda.blockchaincloudpoc.com 
 
 **To Reproduce**
 Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+1. Go to "blockchain-automation-framework/platforms/quorum/configuration/samples/network-quorum.yaml
+2. Click on network-quorum.yaml
+3. Scroll down to line no.122 i.e organization name: manufacturer, line no. 176 i.e organization name: store and line no. 230 i.e organization name: warehouse.
+4. See error - external_url_suffix: test.corda.blockchaincloudpoc.com 
 
 **Expected behavior**
-A clear and concise description of what you expected to happen.
+It should have below value:-
+external_url_suffix: test.quorum.blockchaincloudpoc.com  
 
 **Screenshots**
-If applicable, add screenshots to help explain your problem.
+Not Applicable
 
 **Environment (please complete the following information):**
- - OS: [e.g. MacOS]
- - Version [e.g. 22]
+ - OS: [e.g. Windows]
+ - Version [e.g. 10]
 
 **Additional context**
 Add any other context about the problem here.
