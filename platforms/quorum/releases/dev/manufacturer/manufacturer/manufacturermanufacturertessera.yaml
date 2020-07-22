@@ -42,7 +42,7 @@ spec:
       dbname: demodb
       mysqluser: demouser
     vault:
-      address: http://ac5ee81c5ca6211ea9af20220d9b0e54-1122465898.ca-central-1.elb.amazonaws.com:9000/
+      address: http://ac5ee81c5ca6211ea9af20220d9b0e54-1122465898.ca-central-1.elb.amazonaws.com:9000
       secretprefix: secret/manufacturer-quo/crypto/manufacturer
       serviceaccountname: vault-auth
       keyname: quorum
