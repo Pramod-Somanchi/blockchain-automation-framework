@@ -1,0 +1,82 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: storestoretessera
+  namespace: store-quo
+  annotations:
+    flux.weave.works/automated: "false"
+spec:
+  releaseName: storestoretessera
+  chart:
+    git: ssh://git@github.com/Pramod-Somanchi/blockchain-automation-framework.git
+    ref: develop
+    path: platforms/quorum/charts/node_tessera  
+  values:
+    replicaCount: 1
+    metadata:
+      namespace: store-quo
+      labels:
+    images:
+      node: quorumengineering/quorum:2.5.0
+      alpineutils: index.docker.io/hyperledgerlabs/alpine-utils:1.0
+      tessera: quorumengineering/tessera:0.11
+      busybox: busybox
+      mysql: mysql/mysql-server:5.7
+    node:
+      name: store
+      status: default
+      consensus: raft
+      subject: O=Store,OU=Store,L=40.73/-74/New York,C=US
+      mountPath: /etc/quorum/qdata
+      imagePullSecret: regcred
+      keystore: keystore_1
+      
+      servicetype: ClusterIP
+      lock: true/false
+      ports:
+        rpc: 8546
+        raft: 50401
+        tm: 8443
+        quorum: 21000
+        db: 3306
+      dbname: demodb
+      mysqluser: demouser
+    vault:
+      address: http://ac5ee81c5ca6211ea9af20220d9b0e54-1122465898.ca-central-1.elb.amazonaws.com:9000
+      secretprefix: secret/store-quo/crypto/store
+      serviceaccountname: vault-auth
+      keyname: quorum
+      tm_keyname: transaction
+      role: vault-role
+      authpath: quorumstore
+    tessera:
+      dburl: "jdbc:mysql://store:3306/demodb"
+      dbusername: demouser
+      url: "https://store.dlt.clusterg303.aws.bafevent.com:8443"
+      othernodes:
+        - url: https://carrier.dlt.clusterg303.aws.bafevent.com:8443
+        - url: https://manufacturer.dlt.clusterg303.aws.bafevent.com:8443
+        - url: https://store.dlt.clusterg303.aws.bafevent.com:8443
+        - url: https://warehouse.dlt.clusterg303.aws.bafevent.com:8443
+      tls: "STRICT"
+      trust: "TOFU"
+    genesis: ewogICAgImFsbG9jIjogewogICAgICAgICIwMGM3MGU5MTBhODJlYTkxNjQxODE5ZmIxZDE0ZjY0MDZkMTUzOGYzIjogewogICAgICAgICAgICAiYmFsYW5jZSI6ICIxMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwIgogICAgICAgIH0sCiAgICAgICAgIjVhNTFmM2YzOTIxYWFhMDI4MzQ5OWIyZDkzOGVjZTViMzQ0ZWZmOTgiOiB7CiAgICAgICAgICAgICJiYWxhbmNlIjogIjEwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAiCiAgICAgICAgfSwKICAgICAgICAiYTcwMDJkOWRkYzJiYTkxYzYwYzM3OTkwODAyMWE1ODhhMzE5NGIzMiI6IHsKICAgICAgICAgICAgImJhbGFuY2UiOiAiMTAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCIKICAgICAgICB9LAogICAgICAgICJhYjFhYWRiNzhjYzBlNTc5YTAyOWRhY2M2MDdiNzc0ZDg4NTYxNjYyIjogewogICAgICAgICAgICAiYmFsYW5jZSI6ICIxMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwIgogICAgICAgIH0KICAgIH0sCiAgICAiY29pbmJhc2UiOiAiMHgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwIiwKICAgICJjb25maWciOiB7CiAgICAgICAgImJ5emFudGl1bUJsb2NrIjogMSwKICAgICAgICAiY2hhaW5JZCI6IDEwLAogICAgICAgICJjb25zdGFudGlub3BsZUJsb2NrIjogMCwKICAgICAgICAiZWlwMTUwQmxvY2siOiAxLAogICAgICAgICJlaXAxNTBIYXNoIjogIjB4MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCIsCiAgICAgICAgImVpcDE1NUJsb2NrIjogMCwKICAgICAgICAiZWlwMTU4QmxvY2siOiAxLAogICAgICAgICJpc1F1b3J1bSI6IHRydWUsCiAgICAgICAgInBldGVyc2J1cmdCbG9jayI6IDAsCiAgICAgICAgInJhZnRTZWNvbmRzIjogdHJ1ZSwKICAgICAgICAidHhuU2l6ZUxpbWl0IjogMTI4CiAgICB9LAogICAgImRpZmZpY3VsdHkiOiAiMHgwIiwKICAgICJleHRyYURhdGEiOiAiMHgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwIiwKICAgICJnYXNMaW1pdCI6ICIweEUwMDAwMDAwMDAiLAogICAgIm1peGhhc2giOiAiMHgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDY0NzU3MjYxNmM2NTc4NzM2NTY0NmM2NTc4IiwKICAgICJub25jZSI6ICIweDAiLAogICAgInBhcmVudEhhc2giOiAiMHgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwIiwKICAgICJ0aW1lc3RhbXAiOiAiMHgwMCIKfQ==
+    staticnodes: 
+      [
+    "enode://b158f8d58eed5cb14fa1d03bc50162f573a7541b2b7517c4f0868bdbf19053c4026a55cd4837ebd4cf817085c9244e74cf5ddea7782f263ad9d1e4dbde603c71@carrier.dlt.clusterg303.aws.bafevent.com:15010?discport=0&raftport=15013",
+    "enode://aaa691bc8c00d925a88c245523b730c1eeffffff51d8b4185c9c3130db8871184052cb71b35c9e96fd031a29248141cbd11d4b0a96bfbfb8e37cb4a88339b0eb@manufacturer.dlt.clusterg303.aws.bafevent.com:15020?discport=0&raftport=15023",
+    "enode://af0e255aaa211f71df2b358e285c34477fdc555c5cbd81150ac2575ecaf08f1396a8d91b5061c6f981c1a24a1387bae7be86f98ae9a5f4cfe88c9352d6fe7446@store.dlt.clusterg303.aws.bafevent.com:15030?discport=0&raftport=15033",
+    "enode://43f3e113098dbb2ffc92cb5d1fb5b2495b794bfadb49a596fc19e90394fd49775d0d66f0c37c203ae04b58ade6847f892e5f72099b54efd8777507b4ed7e0b58@warehouse.dlt.clusterg303.aws.bafevent.com:15040?discport=0&raftport=15043"
+]
+    proxy:
+      provider: "ambassador"
+      external_url: store.dlt.clusterg303.aws.bafevent.com
+      portTM: 8443
+      rpcport: 15031
+      quorumport: 15030
+  
+      portRaft: 15033
+    storage:
+      storageclassname: awsstorageclass
+      storagesize: 1Gi
+      dbstorage: 1Gi
