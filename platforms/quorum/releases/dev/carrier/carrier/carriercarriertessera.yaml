@@ -54,10 +54,10 @@ spec:
       dbusername: demouser
       url: "https://carrier.dlt.clusterg303.aws.bafevent.com:8443"
       othernodes:
-        - url: https://carrier.carrier.dlt.clusterg303.aws.bafevent.com:8443
-        - url: https://manufacturer.manufacturer.dlt.clusterg303.aws.bafevent.com:8443
-        - url: https://store.store.dlt.clusterg303.aws.bafevent.com:8443
-        - url: https://warehouse.warehouse.dlt.clusterg303.aws.bafevent.com:8443
+        - url: https://carrier.dlt.clusterg303.aws.bafevent.com:8443
+        - url: https://manufacturer.dlt.clusterg303.aws.bafevent.com:8443
+        - url: https://store.dlt.clusterg303.aws.bafevent.com:8443
+        - url: https://warehouse.dlt.clusterg303.aws.bafevent.com:8443
       tls: "STRICT"
       trust: "TOFU"
     genesis: ewogICAgImFsbG9jIjogewogICAgICAgICIzYjI4YjY1YmQ4YzVmNTc2Y2VmMjQzNmU3NTYzYjA2MjdjNzExMDUxIjogewogICAgICAgICAgICAiYmFsYW5jZSI6ICIxMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwIgogICAgICAgIH0sCiAgICAgICAgImJkODBlNWU3ZTBkNWI4NWYyMTZiNzE1NDk3Y2IwNGQ4MjIxY2I5ZTYiOiB7CiAgICAgICAgICAgICJiYWxhbmNlIjogIjEwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAiCiAgICAgICAgfSwKICAgICAgICAiZDk2Y2NlNDNmYWU0MTBlMDgwYjE4ZmRkZmQyMzBkYThiMzRkYjc0ZCI6IHsKICAgICAgICAgICAgImJhbGFuY2UiOiAiMTAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCIKICAgICAgICB9LAogICAgICAgICJlNTBjNTljODFjNjg4YmIzMTlkNmIzNGY0YzgzMTI2YzE0ZDdhYTcxIjogewogICAgICAgICAgICAiYmFsYW5jZSI6ICIxMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwIgogICAgICAgIH0KICAgIH0sCiAgICAiY29pbmJhc2UiOiAiMHgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwIiwKICAgICJjb25maWciOiB7CiAgICAgICAgImJ5emFudGl1bUJsb2NrIjogMSwKICAgICAgICAiY2hhaW5JZCI6IDEwLAogICAgICAgICJjb25zdGFudGlub3BsZUJsb2NrIjogMCwKICAgICAgICAiZWlwMTUwQmxvY2siOiAxLAogICAgICAgICJlaXAxNTBIYXNoIjogIjB4MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCIsCiAgICAgICAgImVpcDE1NUJsb2NrIjogMCwKICAgICAgICAiZWlwMTU4QmxvY2siOiAxLAogICAgICAgICJpc1F1b3J1bSI6IHRydWUsCiAgICAgICAgInBldGVyc2J1cmdCbG9jayI6IDAsCiAgICAgICAgInJhZnRTZWNvbmRzIjogdHJ1ZSwKICAgICAgICAidHhuU2l6ZUxpbWl0IjogMTI4CiAgICB9LAogICAgImRpZmZpY3VsdHkiOiAiMHgwIiwKICAgICJleHRyYURhdGEiOiAiMHgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwIiwKICAgICJnYXNMaW1pdCI6ICIweEUwMDAwMDAwMDAiLAogICAgIm1peGhhc2giOiAiMHgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDY0NzU3MjYxNmM2NTc4NzM2NTY0NmM2NTc4IiwKICAgICJub25jZSI6ICIweDAiLAogICAgInBhcmVudEhhc2giOiAiMHgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwIiwKICAgICJ0aW1lc3RhbXAiOiAiMHgwMCIKfQ==
